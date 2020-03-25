@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "server/": "https://deno.land/x/abc@v0.2.3/",
+    "mw/": "https://deno.land/x/abc@v0.2.3/middleware/"
+  }
+}
