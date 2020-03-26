@@ -1,6 +1,8 @@
 import { Application } from "server/mod.ts";
 import { logger } from "mw/logger.ts";
 import { cors } from "mw/cors.ts";
+import cloudGroup from "./cloud_group.ts";
+import pvGroup from "./pv_group.ts";
 
 const app = new Application();
 
@@ -12,6 +14,6 @@ console.log(
   `server listening on http://localhost:${app.server?.listener.addr.port}`
 );
 
-app.get("/hello", c => {
-  return c.path;
-});
+cloudGroup(app.group("/cloud"));
+// pv: page views
+pvGroup(app.group("/pv"));
