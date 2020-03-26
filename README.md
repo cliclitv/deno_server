@@ -7,19 +7,21 @@ clicli server written by deno
 [![tag](https://img.shields.io/badge/deno-v0.37.1-green.svg)](https://github.com/denoland/deno)
 [![tag](https://img.shields.io/badge/abc-v0.2.5-green.svg)](https://github.com/zhmushan/abc)
 
-### 启动
+## Development
 
-```sh
+### Running
+
+```
 deno --allow-net --importmap=import_map.json main.ts
 ```
 
-### 测试
+### Testing
 
-```sh
+```
 deno test -A --importmap=import_map.json
 ```
 
-### 技术栈
+## Dependencies
 
 - [deno](https://deno.land)
 - [abc](https://github.com/zhmushan/abc)
