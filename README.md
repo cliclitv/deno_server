@@ -10,7 +10,13 @@ clicli server written by deno
 ### 启动
 
 ```sh
-$ ./run.sh
+deno --allow-net --importmap=import_map.json main.ts
+```
+
+### 测试
+
+```sh
+deno test -A --importmap=import_map.json
 ```
 
 ### 技术栈
