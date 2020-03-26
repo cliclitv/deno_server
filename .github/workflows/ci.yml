@@ -14,4 +14,6 @@ jobs:
 
       - run: deno --version
       - run: deno fmt --check
-      - run: ./test.sh
+      - run: |
+          chmod +x test.sh
+          ./test.sh
