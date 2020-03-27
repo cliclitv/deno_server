@@ -12,7 +12,7 @@ clicli server written by deno
 ### Running
 
 ```
-deno --allow-net --importmap=import_map.json main.ts
+deno --allow-net --allow-plugin --importmap=import_map.json main.ts
 ```
 
 ### Testing

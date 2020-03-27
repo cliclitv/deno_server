@@ -1,4 +1,5 @@
 import { Group } from "server/mod.ts";
+import { getToken } from "./util.ts";
 
 export default function(g: Group) {
   g.get("/hcy/:content", async c => {
@@ -26,9 +27,17 @@ export default function(g: Group) {
 
   g.get("/dogecloud/:content", async c => {
     const content = c.params.content;
-    const url = await fetch(`https://jx.clicli.us/jx?url=${content}@dogecloud`)
+    const ip = c.request.conn.remoteAddr.hostname;
+    const param = `/video/streams.json?platform=pch5&vid=${content}&ip=${ip}`;
+    const token = getToken(param + "\n");
+    const url = await fetch(`https://api.dogecloud.com${param}`, {
+      headers: {
+        Host: "api.dogecloud.com",
+        Authorization: `TOKEN ${token}`
+      }
+    })
       .then(resp => resp.json())
-      .then(data => data.url);
+      .then(data => data.data.stream[0].url);
 
     return { url, type: "hls" };
   });

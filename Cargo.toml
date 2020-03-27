@@ -1,0 +1,16 @@
+[package]
+name = "deno_server_plugin"
+version = "0.0.1"
+authors = ["木杉"]
+edition = "2018"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+futures = "0.3.4"
+deno_core = "0.37.1"
+rust-crypto = "^0.2"
+serde_json = "1.0"
+rustc-serialize = "0.3"
