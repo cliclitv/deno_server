@@ -16,7 +16,7 @@ jobs:
       - run: deno fmt --check
 
       - name: Start server
-        run: deno --allow-net --allow-plugin --importmap=import_map.json main.ts &
+        run: deno --allow-net --allow-plugin --allow-read --allow-write --importmap=import_map.json main.ts &
 
       - name: Test
         run: deno test -A --importmap=import_map.json
