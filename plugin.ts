@@ -12,7 +12,7 @@ if (Deno.build.os === "mac") {
 }
 
 const filename =
-  `./target/debug/${filenamePrefix}${filenameBase}${filenameSuffix}`;
+  `https://github.com/cliclitv/deno_server/releases/download/plugin@v0.0.1/${filenamePrefix}${filenameBase}${filenameSuffix}`;
 
 const plugin = Deno.openPlugin(filename);
 
