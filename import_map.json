@@ -3,6 +3,7 @@
     "server/": "https://deno.land/x/abc@v0.2.5/",
     "mw/": "https://deno.land/x/abc@v0.2.5/middleware/",
 
+    "fs/": "https://deno.land/std@v0.37.1/fs/",
     "testing/": "https://deno.land/std@v0.37.1/testing/",
     "textproto/": "https://deno.land/std@v0.37.1/textproto/",
     "io/": "https://deno.land/std@v0.37.1/io/"

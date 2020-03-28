@@ -1,3 +1,6 @@
+import { exists } from "fs/mod.ts";
+const { openPlugin, writeFile } = Deno;
+
 const filenameBase = "deno_server_plugin";
 
 let filenameSuffix = ".so";
@@ -11,9 +14,15 @@ if (Deno.build.os === "mac") {
   filenameSuffix = ".dylib";
 }
 
-const filename =
-  `https://github.com/cliclitv/deno_server/releases/download/plugin@v0.0.1/${filenamePrefix}${filenameBase}${filenameSuffix}`;
+const filename = `${filenamePrefix}${filenameBase}${filenameSuffix}`;
 
-const plugin = Deno.openPlugin(filename);
+if (!(await exists(filename))) {
+  const b = await fetch(
+    `https://github.com/cliclitv/deno_server/releases/download/plugin@v0.0.1/${filename}`
+  );
+  await writeFile(filename, new Uint8Array(await b.arrayBuffer()));
+}
+
+const plugin = openPlugin(filename);
 
 export default plugin.ops;
