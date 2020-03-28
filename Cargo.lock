@@ -67,7 +67,6 @@ name = "deno_server_plugin"
 version = "0.0.1"
 dependencies = [
  "deno_core",
- "futures 0.3.4",
  "rust-crypto",
  "rustc-serialize",
  "serde_json",

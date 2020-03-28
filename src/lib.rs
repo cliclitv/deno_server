@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate deno_core;
 extern crate crypto;
-extern crate futures;
 extern crate rustc_serialize;
 extern crate serde_json;
 
