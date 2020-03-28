@@ -1,0 +1,56 @@
+name: plugin
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "Cargo.toml"
+      - "src/**"
+      - ".github/workflows/plugin.yml"
+
+jobs:
+  build:
+    name: ${{ matrix.kind }} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest, windows-2019, ubuntu-16.04]
+
+    env:
+      GH_ACTIONS: true
+      RUST_BACKTRACE: full
+      DENO_BUILD_MODE: release
+      V8_BINARY: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: "1.42.0"
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Remove Some Cache
+        if: matrix.os == 'windows-2019'
+        run: |
+          rm target/release/gn_root -Recurse -ErrorAction Ignore
+          rm target/debug/gn_root -Recurse -ErrorAction Ignore
+      - name: Build
+        env:
+          RUST_BACKTRACE: 1
+        run: cargo build --release
+
+      - name: Release plugin
+        uses: softprops/action-gh-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release plugin
+          draft: true
+          files: |
+            target/release/libdeno_server_plugin.dylib
+            target/release/libdeno_server_plugin.so
+            target/release/deno_server_plugin.dll

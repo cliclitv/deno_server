@@ -11,19 +11,9 @@ jobs:
       - uses: denolib/setup-deno@master
         with:
           deno-version: 0.37.1
-      - uses: hecrj/setup-rust-action@v1
-        with:
-          rust-version: "1.42.0"
-
-      - name: Cache cargo build
-        uses: actions/cache@v1
-        with:
-          path: target
-          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
 
       - run: deno --version
       - run: deno fmt --check
-      - run: cargo build
 
       - name: Start server
         run: deno --allow-net --allow-plugin --importmap=import_map.json main.ts &
