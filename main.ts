@@ -12,7 +12,7 @@ app.use(logger()).use(cors());
 app.start({ port: 8080 });
 
 console.log(
-  `server listening on http://localhost:${app.server?.listener.addr.port}`
+  `server listening on http://localhost:${(app.server?.listener.addr as any).port}`
 );
 
 cloudGroup(app.group("/cloud"));

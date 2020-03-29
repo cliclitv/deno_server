@@ -27,7 +27,7 @@ export default function(g: Group) {
 
   g.get("/dogecloud/:content", async c => {
     const content = c.params.content;
-    const ip = c.request.conn.remoteAddr.hostname;
+    const ip = (c.request.conn.remoteAddr as any).hostname;
     const param = `/video/streams.json?platform=pch5&vid=${content}&ip=${ip}`;
     const token = getToken(param + "\n");
     const url = await fetch(`https://api.dogecloud.com${param}`, {
