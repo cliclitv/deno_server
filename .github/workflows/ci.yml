@@ -4,6 +4,11 @@ on: [push, pull_request]
 
 jobs:
   build:
+    env:
+      MysqlHostname: ${{ secrets.MysqlHostname }}
+      MysqlUsername: ${{ secrets.MysqlUsername }}
+      MysqlDB: ${{ secrets.MysqlDB }}
+      MysqlPassword: ${{ secrets.MysqlPassword }}
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +19,7 @@ jobs:
 
       - run: deno --version
       - run: deno fmt --check
-      - run: echo ${{ secrets.Env }} >> .env
+      - run: touch .env
 
       - name: Start server
         run: deno -A --importmap=import_map.json main.ts &
