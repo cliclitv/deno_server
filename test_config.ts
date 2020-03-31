@@ -20,6 +20,6 @@ export const cloudTest = {
 };
 
 export const pvTest = {
-  pid: "60",
+  pid: 60,
   minpv: 160,
 };

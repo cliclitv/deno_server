@@ -2,6 +2,8 @@
   "imports": {
     "server/": "https://deno.land/x/abc@v0.2.6/",
     "mw/": "https://deno.land/x/abc@v0.2.6/middleware/",
+    "mysql/": "https://deno.land/x/mysql@1.5.0/",
+    "dotenv/": "https://deno.land/x/dotenv@v0.2.3/",
 
     "fs/": "https://deno.land/std@v0.38.0/fs/",
     "testing/": "https://deno.land/std@v0.38.0/testing/",
