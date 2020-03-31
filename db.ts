@@ -1,4 +1,3 @@
-import "dotenv/load.ts";
 import { Client } from "mysql/mod.ts";
 const { MysqlHostname, MysqlUsername, MysqlDB, MysqlPassword } = Deno.env();
 

@@ -1,3 +1,4 @@
+import "dotenv/load.ts";
 import { Application } from "server/mod.ts";
 import { logger } from "mw/logger.ts";
 import { cors } from "mw/cors.ts";

@@ -10,10 +10,10 @@ export default function (g: Group) {
       ])) as Array<{ pv: number }>;
       if (pvs.length) {
         const pv = pvs[0].pv + 1;
-        await conn.execute(`update pv set pv = ?`, [pv]);
+        await conn.execute(`update pv set pv = ? where pid = ?`, [pv, pid]);
         return pv;
       } else {
-        await conn.execute(`insert into pv(pv) values(?)`, [1]);
+        await conn.execute(`insert into pv(pv, pid) values(?, ?)`, [1, pid]);
       }
 
       return 1;
