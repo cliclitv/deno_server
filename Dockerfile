@@ -4,7 +4,7 @@ COPY ./ /server/
 WORKDIR /server/
 RUN deno fetch --importmap import_map.json main.ts
 
-EXPOSE 8080
+EXPOSE 8083
 ENTRYPOINT []
 
 CMD [ "deno", "-A", "--importmap", "import_map.json", "main.ts" ]
