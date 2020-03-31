@@ -25,4 +25,3 @@ deno test -A --importmap=import_map.json
 
 - [deno](https://deno.land)
 - [abc](https://github.com/zhmushan/abc)
- 
