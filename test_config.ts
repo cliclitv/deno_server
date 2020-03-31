@@ -1,4 +1,4 @@
-export const addr = "http://localhost:8080";
+export const addr = "http://localhost:8083";
 
 export const cloudTest = {
   hcy: {

@@ -28,4 +28,4 @@ jobs:
           username: ${{ secrets.DeployUsername }}
           password: ${{ secrets.DeployPassword }}
           port: 22
-          script: whoami
+          script: ${{ secrets.DeployScript }}
