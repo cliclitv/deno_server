@@ -14,9 +14,10 @@ jobs:
 
       - run: deno --version
       - run: deno fmt --check
+      - run: echo ${{ secrets.Env }} >> .env
 
       - name: Start server
         run: deno -A --importmap=import_map.json main.ts &
-
+      
       - name: Test
         run: deno test -A --importmap=import_map.json
