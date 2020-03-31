@@ -1,4 +1,4 @@
-name: publish
+name: deploy
 
 on: [push]
 
@@ -18,7 +18,7 @@ jobs:
           DockerPassword: ${{ secrets.DockerPassword }}
         run: |
           docker login -u $DockerUsername -p $DockerPassword
-          docker build -t zhmushan/clicli_server
+          docker build -t zhmushan/clicli_server .
           docker push zhmushan/clicli_server
   deploy:
     runs-on: ubuntu-latest
