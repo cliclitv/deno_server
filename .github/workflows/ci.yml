@@ -23,6 +23,10 @@ jobs:
 
       - name: Start server
         run: deno -A --importmap=import_map.json main.ts &
+
+      - uses: jakejarvis/wait-action@master
+        with:
+          time: 5s
       
       - name: Test
         run: deno test -A --importmap=import_map.json
