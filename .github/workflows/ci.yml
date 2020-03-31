@@ -22,3 +22,8 @@ jobs:
       
       - name: Test
         run: deno test -A --importmap=import_map.json
+        env:
+          MysqlHostname: ${{ secrets.MysqlHostname }}
+          MysqlUsername: ${{ secrets.MysqlUsername }}
+          MysqlDB: ${{ secrets.MysqlDB }}
+          MysqlPassword: ${{ secrets.MysqlPassword }}
