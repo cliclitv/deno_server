@@ -18,7 +18,7 @@ const filename = `${filenamePrefix}${filenameBase}${filenameSuffix}`;
 
 if (!(await exists(filename))) {
   const b = await fetch(
-    `https://github.com/cliclitv/deno_server/releases/download/plugin@v0.0.1/${filename}`
+    `https://github.com/cliclitv/deno_server/releases/download/plugin@v0.0.2/${filename}`
   );
   await writeFile(filename, new Uint8Array(await b.arrayBuffer()));
 }
