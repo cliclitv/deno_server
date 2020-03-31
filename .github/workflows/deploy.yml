@@ -15,8 +15,6 @@ jobs:
           DockerUsername: ${{ secrets.DockerUsername }}
           DockerPassword: ${{ secrets.DockerPassword }}
         run: |
-          ls -a
-          pwd
           docker login -u $DockerUsername -p $DockerPassword
           docker build -t zhmushan/clicli_server .
           docker push zhmushan/clicli_server
