@@ -9,10 +9,11 @@ const app = new Application();
 
 app.use(logger()).use(cors());
 
-app.start({ port: 8080 });
+app.start({ port: 8083 });
 
 console.log(
-  `server listening on http://localhost:${app.server?.listener.addr.port}`
+  `server listening on http://localhost:${(app.server?.listener
+    .addr as Deno.NetAddr).port}`,
 );
 
 cloudGroup(app.group("/cloud"));
