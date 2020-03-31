@@ -9,7 +9,7 @@ const app = new Application();
 
 app.use(logger()).use(cors());
 
-app.start({ port: 8083 });
+app.start({ hostname: "0.0.0.0", port: 8083 });
 
 console.log(
   `server listening on http://localhost:${(app.server?.listener
