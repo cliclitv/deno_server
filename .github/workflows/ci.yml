@@ -17,13 +17,11 @@ jobs:
 
       - name: Start server
         run: deno -A --importmap=import_map.json main.ts &
-
-      - run: deno eval "console.log(Deno.env())"
-      
-      - name: Test
-        run: deno test -A --importmap=import_map.json
         env:
           MysqlHostname: ${{ secrets.MysqlHostname }}
           MysqlUsername: ${{ secrets.MysqlUsername }}
           MysqlDB: ${{ secrets.MysqlDB }}
           MysqlPassword: ${{ secrets.MysqlPassword }}
+      
+      - name: Test
+        run: deno test -A --importmap=import_map.json
