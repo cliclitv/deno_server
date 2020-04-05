@@ -43,9 +43,14 @@ export default async (c: Context) => {
         .then((data) => data.data[0].data[0])
 
       return { url, type: 'mp4' }
+    case '1072':
+      url = await fetch(`https://api.pengyou.com/go-cgi-bin/moment_h5/getFeedDetail?feedId=${content}`)
+          .then((resp) => resp.json())
+          .then((data) => data.result.contents[0].video.urls.f0)
+        return { url, type: 'mp4' }
     default:
       // 时光的处理
-      if (content.includes('quan.qq')) {
+      if (content.includes('1098')) {
         const url = await fetch(content)
           .then((resp) => resp.url)
           .then((data) => data)
@@ -54,22 +59,3 @@ export default async (c: Context) => {
       return { url: content, type: 'mp4' }
   }
 }
-
-// g.get('/dogecloud/:content', async (c) => {
-//   const content = c.params.content
-
-// })
-
-// g.get('/weibo/:content', async (c) => {
-//   const content = c.params.content
-//   const url = await fetch(`https://m.weibo.cn/statuses/show?id=${content}`)
-//     .then((resp) => resp.json())
-//     .then((data) => data.data.page_info.urls.mp4_720p_mp4.replace('http', 'https'))
-
-//   return { url, type: 'mp4' }
-// })
-
-// g.get('/1096/:content', async (c) => {
-//   const content = c.params.content
-
-// })
