@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - "Cargo.toml"
-      - "src/**"
+      - "src/**/*.rs"
       - ".github/workflows/plugin.yml"
 
 jobs:
