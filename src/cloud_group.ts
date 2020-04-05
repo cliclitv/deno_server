@@ -44,11 +44,15 @@ export default async (c: Context) => {
         .then((resp) => resp.json())
         .then((data) => JSON.parse(data.data.data.data).video.vid);
 
-      url = await fetch(
+      const res = await fetch(
         `https://qt.qq.com/php_cgi/cod_video/php/get_video_url.php?json=1&multirate=1&filetype=40&game_id=123456&vid=${vid}`,
       )
         .then((resp) => resp.json())
         .then((data) => data.data[0].data[0]);
+
+      const sha = res.replace(/(\S*)1096/, "");
+      url = `https://apd-vliveachy.apdcdn.tc.qq.com/vwegame.tc.qq.com/1096` +
+        sha;
 
       return { url, type: "mp4" };
     case "1072":
