@@ -44,6 +44,13 @@ export default async (c: Context) => {
 
       return { url, type: 'mp4' }
     default:
+      // 时光的处理
+      if (content.includes('quan.qq')) {
+        const url = await fetch(content)
+          .then((resp) => resp.url)
+          .then((data) => data)
+        return { url, type: 'mp4' }
+      }
       return { url: content, type: 'mp4' }
   }
 }
