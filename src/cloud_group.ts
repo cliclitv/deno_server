@@ -61,7 +61,7 @@ export default async (c: Context) => {
           .then((resp) => resp.url)
           .then((data) => data)
         const sha = res.replace(/(\S*)1098/,'')
-        url = `https://apd-vliveachy.apdcdn.tc.qq.com/vmtt.tc.qq.com/` + sha
+        url = `https://apd-vliveachy.apdcdn.tc.qq.com/vmtt.tc.qq.com/1098` + sha
         return { url, type: 'mp4' }
       }
       return { url: content, type: 'mp4' }
