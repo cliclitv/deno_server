@@ -1,5 +1,5 @@
 import { assert } from "testing/asserts.ts";
-import { addr, cloudTest } from "./test_config";
+import { addr, cloudTest } from "./test_config.ts";
 const { test } = Deno;
 
 test(async function hcy() {
