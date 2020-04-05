@@ -2,9 +2,10 @@ import { Context } from 'server/mod.ts'
 import { getToken } from './util.ts'
 
 export default async (c: Context) => {
-  const [content, type] = c.queryParams.url.split('@')
+  const [content, tag] = c.queryParams.url.split('@')
   let url = content
-  switch (type) {
+  let type = content.includes('m3u8') ? 'hls' : 'mp4'
+  switch (tag) {
     case 'hcy':
       const info = atob(content).split(',')
       url = `https://caiyun.feixin.10086.cn/webdisk2/downLoadAction!downloadToPC.action?contentID=${info[1]}&shareContentIDs=${info[1]}&catalogList=&downloadSize=214446914`
@@ -60,10 +61,10 @@ export default async (c: Context) => {
         const res: string = await fetch(content)
           .then((resp) => resp.url)
           .then((data) => data)
-        const sha = res.replace(/(\S*)1098/,'')
+        const sha = res.replace(/(\S*)1098/, '')
         url = `https://apd-vliveachy.apdcdn.tc.qq.com/vmtt.tc.qq.com/1098` + sha
         return { url, type: 'mp4' }
       }
-      return { url: content, type: 'mp4' }
+      return { url, type }
   }
 }
