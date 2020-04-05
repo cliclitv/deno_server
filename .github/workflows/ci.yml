@@ -4,19 +4,29 @@ on: [push, pull_request]
 
 jobs:
   build:
+    env:
+      MysqlHostname: ${{ secrets.MysqlHostname }}
+      MysqlUsername: ${{ secrets.MysqlUsername }}
+      MysqlDB: ${{ secrets.MysqlDB }}
+      MysqlPassword: ${{ secrets.MysqlPassword }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - uses: denolib/setup-deno@master
         with:
-          deno-version: 0.37.1
+          deno-version: 0.38.0
 
       - run: deno --version
       - run: deno fmt --check
+      - run: touch .env
 
       - name: Start server
-        run: deno --allow-net --allow-plugin --allow-read --allow-write --importmap=import_map.json main.ts &
+        run: deno -A --importmap=import_map.json main.ts &
 
+      - uses: jakejarvis/wait-action@master
+        with:
+          time: 5s
+      
       - name: Test
         run: deno test -A --importmap=import_map.json

@@ -1,18 +1,20 @@
+import "dotenv/load.ts";
 import { Application } from "server/mod.ts";
 import { logger } from "mw/logger.ts";
 import { cors } from "mw/cors.ts";
-import cloudGroup from "./cloud_group.ts";
-import pvGroup from "./pv_group.ts";
-import uploadGroup from "./upload_group.ts";
+import cloudGroup from "./src/cloud_group.ts";
+import pvGroup from "./src/pv_group.ts";
+import uploadGroup from "./src/upload_group.ts";
 
 const app = new Application();
 
 app.use(logger()).use(cors());
 
-app.start({ port: 8080 });
+app.start({ hostname: "0.0.0.0", port: 8083 });
 
 console.log(
-  `server listening on http://localhost:${(app.server?.listener.addr as any).port}`
+  `server listening on http://localhost:${(app.server?.listener
+    .addr as Deno.NetAddr).port}`,
 );
 
 cloudGroup(app.group("/cloud"));

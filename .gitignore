@@ -1,1 +1,6 @@
 target
+*.so
+*.dylib
+*.dll
+.env
+mysql.log

@@ -4,7 +4,7 @@ import { addr, pvTest } from "./test_config.ts";
 const { test } = Deno;
 
 test(async function pv() {
-  const data = await fetch(`${addr}/pv/${pvTest.pid}`).then(resp =>
+  const data = await fetch(`${addr}/pv/${pvTest.pid}`).then((resp) =>
     resp.json()
   );
   assert(data.pid === pvTest.pid);
