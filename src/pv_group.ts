@@ -2,7 +2,7 @@ import { Group } from "server/mod.ts";
 import { client } from "./db.ts";
 
 export default function (g: Group) {
-  g.get("/:pid", async (c) => {
+  g.get("/get", async (c) => {
     const pid = parseInt(c.params.pid);
     const pv = await client.transaction(async (conn) => {
       const pvs = (await conn.query(`select pv from pv where pid = ?`, [

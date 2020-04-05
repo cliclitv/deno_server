@@ -8,6 +8,7 @@
     "fs/": "https://deno.land/std@v0.38.0/fs/",
     "testing/": "https://deno.land/std@v0.38.0/testing/",
     "textproto/": "https://deno.land/std@v0.38.0/textproto/",
-    "io/": "https://deno.land/std@v0.38.0/io/"
+    "io/": "https://deno.land/std@v0.38.0/io/",
+    "https://deno.land/std/strings/mod.ts":"https://deno.land/std@v0.38.0/strings/mod.ts"
   }
 }
