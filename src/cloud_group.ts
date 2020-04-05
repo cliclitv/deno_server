@@ -2,8 +2,7 @@ import { Context } from 'server/mod.ts'
 import { getToken } from './util.ts'
 
 export default async (c: Context) => {
-  const [content, type] = c.queryParams.url
-  console.log(content,type)
+  const [content, type] = c.queryParams.url.split('@')
   let url = content
   switch (type) {
     case 'hcy':
@@ -21,7 +20,7 @@ export default async (c: Context) => {
         .then((resp) => resp.json())
         .then((data) => data.downloadUrl)
       return { url, type: 'mp4' }
-    case '1096':
+    case 'dogecloud':
       const ip = (c.request.conn.remoteAddr as Deno.NetAddr).hostname
       const param = `/video/streams.json?platform=pch5&vid=${content}&ip=${ip}`
       const token = getToken(param + '\n')
@@ -33,7 +32,6 @@ export default async (c: Context) => {
       })
         .then((resp) => resp.json())
         .then((data) => data.data.stream[0].url)
-
       return { url, type: 'hls' }
     case '1096':
       const vid = await fetch(`https://www.wegame.com.cn/api/forum/lua/wegame_feeds/get_feed_item_data?p={"iid":"${content}","uid":211762212}`)
