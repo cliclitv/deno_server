@@ -7,7 +7,7 @@ export const cloudTest = {
   },
   dogecloud: {
     content: "50468",
-    url: "https://pl.dogecloud.com",
+    url: "https://csrc.vcloud.dogecdn.com",
   },
   weibo: {
     content: "IxlhYcJ2X",

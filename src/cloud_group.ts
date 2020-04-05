@@ -57,6 +57,14 @@ export default async (c: Context) => {
         .then((resp) => resp.json())
         .then((data) => data.result.contents[0].video.urls.f0);
       return { url, type: "mp4" };
+    case "weibo":
+      url = await fetch(`https://m.weibo.cn/statuses/show?id=${content}`)
+        .then((resp) => resp.json())
+        .then((data) =>
+          data.data.page_info.urls.mp4_720p_mp4.replace("http", "https")
+        );
+
+      return { url, type: "mp4" };
     default:
       // 时光的处理
       if (content.includes("1098")) {

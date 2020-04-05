@@ -3,7 +3,7 @@ import { addr, cloudTest } from "./test_config.ts";
 const { test } = Deno;
 
 test(async function hcy() {
-  const url: string = await fetch(`${addr}/cloud/hcy/${cloudTest.hcy.content}`)
+  const url: string = await fetch(`${addr}/jx?url=${cloudTest.hcy.content}@hcy`)
     .then((resp) => resp.json())
     .then((data) => data.url);
   assert(url.startsWith(cloudTest.hcy.url));
@@ -11,7 +11,7 @@ test(async function hcy() {
 
 test(async function dogecloud() {
   const url: string = await fetch(
-    `${addr}/cloud/dogecloud/${cloudTest.dogecloud.content}`,
+    `${addr}/jx?url=${cloudTest.dogecloud.content}@dogecloud`,
   )
     .then((resp) => resp.json())
     .then((data) => data.url);
@@ -20,7 +20,7 @@ test(async function dogecloud() {
 
 test(async function weibo() {
   const url: string = await fetch(
-    `${addr}/cloud/weibo/${cloudTest.weibo.content}`,
+    `${addr}/jx?url=${cloudTest.weibo.content}@weibo`,
   )
     .then((resp) => resp.json())
     .then((data) => data.url);
@@ -29,7 +29,7 @@ test(async function weibo() {
 
 test(async function _1096() {
   const url: string = await fetch(
-    `${addr}/cloud/1096/${cloudTest._1096.content}`,
+    `${addr}/jx?url=${cloudTest._1096.content}@1096`,
   )
     .then((resp) => resp.json())
     .then((data) => data.url);
