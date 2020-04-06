@@ -16,6 +16,7 @@ export default function (g: Group) {
         await conn.execute(`insert into pv(pv, pid) values(?, ?)`, [1, pid]);
       }
 
+      conn.close();
       return 1;
     });
 
