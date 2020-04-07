@@ -3,7 +3,7 @@ import { Application } from "server/mod.ts";
 import { logger } from "mw/logger.ts";
 import { cors } from "mw/cors.ts";
 import cloudGroup from "./src/cloud_group.ts";
-import pvGroup from "./src/pv_group.ts";
+// import pvGroup from "./src/pv_group.ts";
 import uploadGroup from "./src/upload_group.ts";
 
 const app = new Application();
@@ -19,5 +19,5 @@ console.log(
 
 app.get("/jx", cloudGroup);
 // pv: page views
-pvGroup(app.group("/pv"));
+// pvGroup(app.group("/pv"));
 uploadGroup(app.group("/upload"));
