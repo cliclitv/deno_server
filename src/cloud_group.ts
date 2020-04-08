@@ -5,6 +5,7 @@ export default async (c: Context) => {
   const [content, tag] = c.queryParams.url.split("@");
   let url = content;
   let type = content.includes("m3u8") ? "hls" : "mp4";
+  let code = 0;
   switch (tag) {
     case "hcy":
       const info = atob(content).split(",");
@@ -23,7 +24,7 @@ export default async (c: Context) => {
       })
         .then((resp) => resp.json())
         .then((data) => data.downloadUrl);
-      return { url, type: "mp4" };
+      return { code, url, type: "mp4" };
     case "dogecloud":
       const ip = (c.request.conn.remoteAddr as Deno.NetAddr).hostname;
       const param = `/video/streams.json?platform=pch5&vid=${content}&ip=${ip}`;
@@ -36,7 +37,7 @@ export default async (c: Context) => {
       })
         .then((resp) => resp.json())
         .then((data) => data.data.stream[0].url);
-      return { url, type: "hls" };
+      return { code, url, type: "hls" };
     case "1096":
       const vid = await fetch(
         `https://www.wegame.com.cn/api/forum/lua/wegame_feeds/get_feed_item_data?p={"iid":"${content}","uid":211762212}`,
@@ -54,14 +55,14 @@ export default async (c: Context) => {
       url = `https://apd-vliveachy.apdcdn.tc.qq.com/vwegame.tc.qq.com/1096` +
         sha;
 
-      return { url, type: "mp4" };
+      return { code, url, type: "mp4" };
     case "1072":
       url = await fetch(
         `https://api.pengyou.com/go-cgi-bin/moment_h5/getFeedDetail?feedId=${content}`,
       )
         .then((resp) => resp.json())
         .then((data) => data.result.contents[0].video.urls.f0);
-      return { url, type: "mp4" };
+      return { code, url, type: "mp4" };
     case "weibo":
       url = await fetch(`https://m.weibo.cn/statuses/show?id=${content}`)
         .then((resp) => resp.json())
@@ -69,7 +70,7 @@ export default async (c: Context) => {
           data.data.page_info.urls.mp4_720p_mp4.replace("http", "https")
         );
 
-      return { url, type: "mp4" };
+      return { code, url, type: "mp4" };
     default:
       // 时光的处理
       if (content.includes("1098")) {
@@ -79,8 +80,8 @@ export default async (c: Context) => {
         const sha = res.replace(/(\S*)1098/, "");
         url = `https://apd-vliveachy.apdcdn.tc.qq.com/vmtt.tc.qq.com/1098` +
           sha;
-        return { url, type: "mp4" };
+        return { code, url, type: "mp4" };
       }
-      return { url, type };
+      return { code, url, type };
   }
 };
